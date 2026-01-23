@@ -24,6 +24,7 @@ jobs:
           rm -rf node_modules package-lock.json
           npm install --legacy-peer-deps
           npm run build
+          touch dist/.nojekyll
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4
