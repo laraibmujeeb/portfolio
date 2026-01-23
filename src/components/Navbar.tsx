@@ -38,15 +38,8 @@ export const Navbar = () => {
 
             if (currentSection) {
                 setActiveHash(`#${currentSection}`);
-                // Update URL without scrolling
-                if (window.location.hash !== `#${currentSection}`) {
-                    window.history.replaceState(null, "", `#${currentSection}`);
-                }
             } else if (window.scrollY < 100) {
                 setActiveHash("");
-                if (window.location.hash) {
-                    window.history.replaceState(null, "", " ");
-                }
             }
         };
 
@@ -61,16 +54,14 @@ export const Navbar = () => {
         const element = document.querySelector(href);
         if (element) {
             element.scrollIntoView({ behavior: "smooth" });
-            // Update URL hash manually
-            window.history.pushState(null, "", href);
         }
     };
 
     return (
         <nav
             className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled
-                    ? "py-2 glass-card shadow-lg"
-                    : "py-4 bg-transparent"
+                ? "py-2 glass-card shadow-lg"
+                : "py-4 bg-transparent"
                 }`}
         >
             <div className="max-w-6xl mx-auto px-4">
@@ -100,8 +91,8 @@ export const Navbar = () => {
                                     handleNavClick(link.href);
                                 }}
                                 className={`px-4 py-2 hover:text-violet-600 dark:hover:text-violet-400 transition-colors font-medium text-sm animated-underline ${activeHash === link.href
-                                        ? "text-violet-600 dark:text-violet-400 font-semibold"
-                                        : "text-gray-600 dark:text-gray-300"
+                                    ? "text-violet-600 dark:text-violet-400 font-semibold"
+                                    : "text-gray-600 dark:text-gray-300"
                                     }`}
                             >
                                 {link.name}
@@ -150,8 +141,8 @@ export const Navbar = () => {
                                         handleNavClick(link.href);
                                     }}
                                     className={`px-4 py-3 hover:text-violet-600 dark:hover:text-violet-400 hover:bg-violet-50 dark:hover:bg-violet-900/30 rounded-xl transition-all font-medium animate-slide-up ${activeHash === link.href
-                                            ? "text-violet-600 dark:text-violet-400 bg-violet-50 dark:bg-violet-900/30"
-                                            : "text-gray-600 dark:text-gray-300"
+                                        ? "text-violet-600 dark:text-violet-400 bg-violet-50 dark:bg-violet-900/30"
+                                        : "text-gray-600 dark:text-gray-300"
                                         }`}
                                     style={{ animationDelay: `${index * 0.05}s` }}
                                 >

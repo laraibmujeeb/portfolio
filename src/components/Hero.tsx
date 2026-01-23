@@ -1,6 +1,36 @@
 import { Github, Linkedin, Mail, Phone, ChevronDown } from "lucide-react";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 
+// Custom slow smooth scroll function
+const smoothScrollTo = (elementId: string, duration: number = 1500) => {
+  const element = document.getElementById(elementId);
+  if (!element) return;
+
+  const targetPosition = element.getBoundingClientRect().top + window.pageYOffset;
+  const startPosition = window.pageYOffset;
+  const distance = targetPosition - startPosition;
+  let startTime: number | null = null;
+
+  const easeInOutCubic = (t: number): number => {
+    return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+  };
+
+  const animation = (currentTime: number) => {
+    if (startTime === null) startTime = currentTime;
+    const timeElapsed = currentTime - startTime;
+    const progress = Math.min(timeElapsed / duration, 1);
+    const ease = easeInOutCubic(progress);
+
+    window.scrollTo(0, startPosition + distance * ease);
+
+    if (timeElapsed < duration) {
+      requestAnimationFrame(animation);
+    }
+  };
+
+  requestAnimationFrame(animation);
+};
+
 export const Hero = () => {
   return (
     <section className="min-h-screen relative flex flex-col justify-center items-center text-center px-4 overflow-hidden">
@@ -79,24 +109,24 @@ export const Hero = () => {
 
         {/* CTA Button with gradient border */}
         <div className="pt-4">
-          <a
-            href="#about"
-            className="inline-flex items-center justify-center h-14 px-10 rounded-full text-lg font-semibold primary-gradient text-white glow-on-hover animate-pulse-glow"
+          <button
+            onClick={() => smoothScrollTo('about', 1500)}
+            className="inline-flex items-center justify-center h-14 px-10 rounded-full text-lg font-semibold primary-gradient text-white glow-on-hover animate-pulse-glow cursor-pointer"
           >
             Explore My Work
-          </a>
+          </button>
         </div>
       </div>
 
       {/* Scroll indicator - positioned at very bottom */}
       <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 z-20">
-        <a
-          href="#about"
-          className="flex flex-col items-center text-gray-400 hover:text-violet-500 transition-colors animate-smooth-bounce"
+        <button
+          onClick={() => smoothScrollTo('about', 1500)}
+          className="flex flex-col items-center text-gray-400 hover:text-violet-500 transition-colors animate-smooth-bounce cursor-pointer"
         >
           <span className="text-xs mb-2 font-medium tracking-wider uppercase opacity-70">Scroll</span>
           <ChevronDown className="h-5 w-5" />
-        </a>
+        </button>
       </div>
     </section>
   );
