@@ -3,24 +3,51 @@ import { Card, CardContent } from "@/components/ui/card";
 
 export const About = () => {
   return (
-    <section id="about" className="py-24 px-4 bg-gradient-to-br from-white via-indigo-50/30 to-purple-50/30">
-      <div className="max-w-4xl mx-auto">
-        <h2 className="text-3xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent mb-8 text-center">About Me</h2>
-        <Card className="backdrop-blur-sm bg-white/80 shadow-xl hover:shadow-2xl transition-shadow border-t border-indigo-100">
-          <CardContent className="pt-6">
-            <div className="space-y-4 text-gray-600 leading-relaxed">
-              <p>
-                I'm a Full Stack Developer with over 3 years of experience building robust, scalable, and user-centric web applications. 
-                I specialize in PHP (Laravel) for backend development and have strong expertise in JavaScript frameworks like React.js and Vue.js for frontend.
+    <section id="about" className="py-24 px-4 relative overflow-hidden">
+      {/* Background gradient - More vibrant in light mode */}
+      <div className="absolute inset-0 bg-gradient-to-br from-violet-100/80 via-white to-fuchsia-100/80 dark:from-gray-900 dark:via-gray-900 dark:to-gray-800" />
+
+      <div className="max-w-4xl mx-auto relative z-10">
+        <div className="text-center mb-12">
+          <span className="inline-block px-4 py-1.5 rounded-full text-sm font-medium bg-violet-100 dark:bg-violet-900/50 text-violet-700 dark:text-violet-300 mb-4">
+            About Me
+          </span>
+          <h2 className="text-4xl md:text-5xl font-bold gradient-text">
+            Who I Am
+          </h2>
+        </div>
+
+        <Card className="glass-card-strong glow-on-hover border-0">
+          <CardContent className="pt-8 pb-8">
+            <div className="space-y-6 text-gray-600 dark:text-gray-300 leading-relaxed text-lg">
+              <p className="animate-slide-up">
+                I'm a <span className="font-semibold text-violet-600 dark:text-violet-400">Full Stack Developer</span> with over 3+ years of experience building robust, scalable, and user-centric web applications.
               </p>
-              <p>
-                Throughout my career, I've worked on diverse projects including multi-tenant SaaS applications, school fee management systems, 
-                property tax systems for government organizations, and fitness platforms with social features.
+              <p className="animate-slide-up" style={{ animationDelay: '0.1s' }}>
+                I specialize in <span className="font-semibold text-fuchsia-600 dark:text-fuchsia-400">PHP (Laravel)</span> for backend development and have strong expertise in JavaScript frameworks like <span className="font-semibold text-orange-500 dark:text-orange-400">React.js</span> and <span className="font-semibold text-emerald-500 dark:text-emerald-400">Vue.js</span> for frontend.
               </p>
-              <p>
-                I'm enthusiastic about solving real-world problems with code, collaborating with teams, and constantly learning new technologies 
-                to deliver efficient and modern digital solutions.
+              <p className="animate-slide-up" style={{ animationDelay: '0.2s' }}>
+                Throughout my career, I've worked on diverse projects including high-traffic job portals, on-demand service marketplaces, multi-tenant SaaS applications, and government systems.
               </p>
+              <p className="animate-slide-up" style={{ animationDelay: '0.3s' }}>
+                I'm passionate about solving real-world problems with clean code, collaborating with amazing teams, and constantly learning cutting-edge technologies to deliver modern digital solutions.
+              </p>
+            </div>
+
+            {/* Stats */}
+            <div className="grid grid-cols-3 gap-6 mt-10 pt-8 border-t border-gray-200 dark:border-gray-700">
+              <div className="text-center">
+                <div className="text-4xl font-bold gradient-text">3+</div>
+                <div className="text-sm text-gray-500 dark:text-gray-400 mt-1">Years Experience</div>
+              </div>
+              <div className="text-center">
+                <div className="text-4xl font-bold gradient-text">10+</div>
+                <div className="text-sm text-gray-500 dark:text-gray-400 mt-1">Projects Delivered</div>
+              </div>
+              <div className="text-center">
+                <div className="text-4xl font-bold gradient-text">4</div>
+                <div className="text-sm text-gray-500 dark:text-gray-400 mt-1">Companies</div>
+              </div>
             </div>
           </CardContent>
         </Card>

@@ -1,53 +1,102 @@
-
-import { Github, Linkedin, Mail, Phone } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Github, Linkedin, Mail, Phone, ChevronDown } from "lucide-react";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 
 export const Hero = () => {
   return (
-    <section className="min-h-[90vh] flex flex-col justify-center items-center text-center px-4 bg-gradient-to-br from-indigo-500/10 via-purple-500/10 to-pink-500/10">
-      <div className="max-w-4xl mx-auto space-y-8">
-        <div className="relative mx-auto w-48 h-48 mb-8">
-          <Avatar className="w-48 h-48 border-4 border-white shadow-xl">
+    <section className="min-h-screen relative flex flex-col justify-center items-center text-center px-4 overflow-hidden">
+      {/* Animated background - More vibrant in light mode */}
+      <div className="absolute inset-0 bg-gradient-to-br from-violet-500/30 via-fuchsia-500/30 to-orange-400/30 dark:from-violet-900/30 dark:via-fuchsia-900/30 dark:to-orange-900/30 animate-gradient" />
+
+      {/* Particle dots */}
+      <div className="absolute inset-0 particles-bg opacity-50" />
+
+      {/* Floating blobs - More visible in light mode */}
+      <div className="absolute top-20 left-10 w-72 h-72 bg-violet-500/40 dark:bg-violet-500/30 rounded-full blur-3xl morph-blob" />
+      <div className="absolute bottom-20 right-10 w-96 h-96 bg-fuchsia-500/35 dark:bg-fuchsia-500/20 rounded-full blur-3xl morph-blob" style={{ animationDelay: '-4s' }} />
+      <div className="absolute top-1/2 left-1/4 w-64 h-64 bg-orange-400/35 dark:bg-orange-500/20 rounded-full blur-3xl morph-blob" style={{ animationDelay: '-2s' }} />
+
+      <div className="relative z-10 max-w-4xl mx-auto space-y-8">
+        {/* Avatar with glow */}
+        <div className="relative mx-auto w-48 h-48 mb-8 animate-float">
+          <div className="absolute inset-0 bg-gradient-to-r from-violet-500 to-fuchsia-500 rounded-full blur-xl opacity-50 animate-pulse-glow" />
+          <Avatar className="w-48 h-48 border-4 border-white/20 shadow-2xl relative">
             <AvatarImage
               src="/lovable-uploads/732e1b5f-39f1-4b34-8a84-ac68c1240891.png"
               alt="Laraib Mujeeb"
               className="object-cover"
             />
-            <AvatarFallback>LM</AvatarFallback>
+            <AvatarFallback className="text-4xl bg-gradient-to-r from-violet-500 to-fuchsia-500 text-white">LM</AvatarFallback>
           </Avatar>
         </div>
-        <h1 className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent tracking-tight">
-          Laraib Mujeeb
+
+        {/* Name with gradient */}
+        <h1 className="text-5xl md:text-7xl font-bold tracking-tight animate-scale-in">
+          <span className="gradient-text">Laraib Mujeeb</span>
         </h1>
-        <h2 className="text-xl md:text-2xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
-          Full Stack Developer crafting scalable web solutions with Laravel & React
+
+        {/* Tagline with typewriter effect */}
+        <h2 className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed animate-slide-up">
+          <span className="font-semibold text-violet-600 dark:text-violet-400">Full Stack Developer</span> crafting scalable web solutions with{" "}
+          <span className="text-fuchsia-600 dark:text-fuchsia-400">Laravel</span> &{" "}
+          <span className="text-orange-500 dark:text-orange-400">React</span>
         </h2>
-        <div className="flex gap-4 justify-center my-8">
-          <Button variant="outline" size="icon" className="hover:scale-105 transition-transform hover:bg-indigo-50" asChild>
-            <a href="https://github.com/laraibmujeeb" target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile">
-              <Github className="h-5 w-5 text-indigo-600" />
-            </a>
-          </Button>
-          <Button variant="outline" size="icon" className="hover:scale-105 transition-transform hover:bg-purple-50" asChild>
-            <a href="https://www.linkedin.com/in/laraib-mujeeb-6b977b1b1/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile">
-              <Linkedin className="h-5 w-5 text-purple-600" />
-            </a>
-          </Button>
-          <Button variant="outline" size="icon" className="hover:scale-105 transition-transform hover:bg-pink-50" asChild>
-            <a href="mailto:mujeeblaraib@gmail.com" aria-label="Email Contact">
-              <Mail className="h-5 w-5 text-pink-600" />
-            </a>
-          </Button>
-          <Button variant="outline" size="icon" className="hover:scale-105 transition-transform hover:bg-emerald-50" asChild>
-            <a href="tel:+918299371557" aria-label="Phone Contact">
-              <Phone className="h-5 w-5 text-emerald-600" />
-            </a>
-          </Button>
+
+        {/* Social Links with glass effect */}
+        <div className="flex gap-4 justify-center my-8" style={{ animationDelay: '0.2s' }}>
+          <a
+            href="https://github.com/laraibmujeeb"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="GitHub Profile"
+            className="p-4 rounded-2xl glass-card-strong glow-on-hover group"
+          >
+            <Github className="h-6 w-6 text-violet-600 dark:text-violet-400 group-hover:scale-110 transition-transform" />
+          </a>
+          <a
+            href="https://www.linkedin.com/in/laraib-mujeeb-6b977b1b1/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LinkedIn Profile"
+            className="p-4 rounded-2xl glass-card-strong glow-on-hover group"
+          >
+            <Linkedin className="h-6 w-6 text-fuchsia-600 dark:text-fuchsia-400 group-hover:scale-110 transition-transform" />
+          </a>
+          <a
+            href="mailto:mujeeblaraib@gmail.com"
+            aria-label="Email Contact"
+            className="p-4 rounded-2xl glass-card-strong glow-on-hover group"
+          >
+            <Mail className="h-6 w-6 text-pink-600 dark:text-pink-400 group-hover:scale-110 transition-transform" />
+          </a>
+          <a
+            href="tel:+918299371557"
+            aria-label="Phone Contact"
+            className="p-4 rounded-2xl glass-card-strong glow-on-hover group"
+          >
+            <Phone className="h-6 w-6 text-orange-500 dark:text-orange-400 group-hover:scale-110 transition-transform" />
+          </a>
         </div>
-        <Button size="lg" className="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700">
-          <a href="#contact">Get in touch</a>
-        </Button>
+
+        {/* CTA Button with gradient border */}
+        <div className="pt-4">
+          <a
+            href="#about"
+            className="inline-flex items-center justify-center h-14 px-10 rounded-full text-lg font-semibold primary-gradient text-white glow-on-hover animate-pulse-glow"
+          >
+            Explore My Work
+          </a>
+        </div>
+      </div>
+
+      {/* Scroll indicator - positioned at very bottom */}
+      <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 z-20">
+        <a
+          href="#about"
+          className="flex flex-col items-center text-gray-400 hover:text-violet-500 transition-colors animate-smooth-bounce"
+        >
+          <span className="text-xs mb-2 font-medium tracking-wider uppercase opacity-70">Scroll</span>
+          <ChevronDown className="h-5 w-5" />
+        </a>
       </div>
     </section>
   );

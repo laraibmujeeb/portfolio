@@ -1,47 +1,68 @@
 
 import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 
 export const Skills = () => {
   const skills = {
-    "Frontend": ["React.js", "Vue.js", "Angular", "JavaScript", "Quasar", "Tailwind CSS"],
-    "Backend": ["PHP", "Laravel", "FilamentPHP", "MySQL", "RESTful APIs"],
-    "Development": ["Git", "Docker", "CI/CD", "Agile", "Test-Driven Development"],
-    "Other": ["Database Design", "System Architecture", "UI/UX Design", "Team Collaboration"]
+    "Frontend": ["React.js", "Vue.js", "Angular", "Livewire", "Quasar", "Tailwind CSS", "TypeScript"],
+    "Backend": ["PHP", "Laravel", "FilamentPHP", "Node.js", "RESTful APIs", "MySQL", "Redis", "Meilisearch"],
+    "DevOps & Tools": ["Git", "Docker", "AWS", "CI/CD", "Scout", "Database Migrations"],
+    "Integrations": ["Razorpay", "Twilio", "Payment Processing", "Call Masking", "Email Systems"]
+  };
+
+  const skillColors: Record<string, string> = {
+    "Frontend": "from-violet-500 to-purple-600",
+    "Backend": "from-fuchsia-500 to-pink-600",
+    "DevOps & Tools": "from-orange-500 to-red-500",
+    "Integrations": "from-emerald-500 to-teal-600"
   };
 
   return (
-    <section id="skills" className="py-24 px-4 bg-gradient-to-br from-purple-50/30 via-pink-50/30 to-white">
-      <div className="max-w-4xl mx-auto">
-        <h2 className="text-3xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent mb-8 text-center">
-          Technical Skills
-        </h2>
-        <Card className="backdrop-blur-sm bg-white/80 shadow-xl hover:shadow-2xl transition-shadow duration-300 border-t border-purple-100">
-          <CardContent className="pt-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {Object.entries(skills).map(([category, categorySkills]) => (
-                <div key={category} className="p-4 rounded-lg bg-gradient-to-br from-white/40 to-purple-50/40 backdrop-blur-sm">
-                  <h3 className="text-lg font-semibold text-gray-800 mb-4 bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
-                    {category}
-                  </h3>
-                  <div className="flex flex-wrap gap-2">
-                    {categorySkills.map((skill) => (
-                      <Badge
-                        key={skill}
-                        variant="secondary"
-                        className="px-3 py-1.5 text-sm bg-gradient-to-r from-indigo-50 to-purple-50 text-indigo-700 hover:from-indigo-100 hover:to-purple-100 transition-all duration-300 transform hover:scale-105 hover:shadow-md"
-                      >
-                        {skill}
-                      </Badge>
-                    ))}
-                  </div>
+    <section id="skills" className="py-24 px-4 relative overflow-hidden">
+      {/* Background - More vibrant in light mode */}
+      <div className="absolute inset-0 bg-gradient-to-br from-fuchsia-100/60 via-white to-violet-100/60 dark:from-gray-900 dark:via-gray-900 dark:to-gray-800" />
+      <div className="absolute inset-0 particles-bg opacity-30" />
+
+      <div className="max-w-5xl mx-auto relative z-10">
+        <div className="text-center mb-12">
+          <span className="inline-block px-4 py-1.5 rounded-full text-sm font-medium bg-fuchsia-100 dark:bg-fuchsia-900/50 text-fuchsia-700 dark:text-fuchsia-300 mb-4">
+            Tech Stack
+          </span>
+          <h2 className="text-4xl md:text-5xl font-bold gradient-text">
+            Skills & Technologies
+          </h2>
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-6">
+          {Object.entries(skills).map(([category, categorySkills], index) => (
+            <Card
+              key={category}
+              className="glass-card glow-on-hover border-0 animate-slide-up overflow-hidden group"
+              style={{ animationDelay: `${index * 0.1}s` }}
+            >
+              {/* Gradient header */}
+              <div className={`h-1 bg-gradient-to-r ${skillColors[category] || 'from-violet-500 to-fuchsia-500'}`} />
+
+              <CardContent className="pt-6 pb-6">
+                <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
+                  <span className={`w-2 h-2 rounded-full bg-gradient-to-r ${skillColors[category] || 'from-violet-500 to-fuchsia-500'}`} />
+                  <span className="text-gray-800 dark:text-gray-200">{category}</span>
+                </h3>
+                <div className="flex flex-wrap gap-2">
+                  {categorySkills.map((skill, i) => (
+                    <span
+                      key={skill}
+                      className="px-3 py-1.5 text-sm rounded-full bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-violet-100 dark:hover:bg-violet-900/50 hover:text-violet-700 dark:hover:text-violet-300 transition-all cursor-default hover:scale-105 hover:shadow-md"
+                      style={{ animationDelay: `${i * 0.05}s` }}
+                    >
+                      {skill}
+                    </span>
+                  ))}
                 </div>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
       </div>
     </section>
   );
 };
-
