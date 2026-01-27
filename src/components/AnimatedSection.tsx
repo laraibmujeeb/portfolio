@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import { motion } from "framer-motion";
 
 interface AnimatedSectionProps {
     children: ReactNode;
@@ -8,26 +8,26 @@ interface AnimatedSectionProps {
     animation?: "fadeUp" | "fadeLeft" | "fadeRight" | "fadeIn" | "scaleUp";
 }
 
-const animationClasses = {
+const variants = {
     fadeUp: {
-        hidden: "opacity-0 translate-y-10",
-        visible: "opacity-100 translate-y-0",
+        hidden: { opacity: 0, y: 40 },
+        visible: { opacity: 1, y: 0 },
     },
     fadeLeft: {
-        hidden: "opacity-0 -translate-x-10",
-        visible: "opacity-100 translate-x-0",
+        hidden: { opacity: 0, x: -40 },
+        visible: { opacity: 1, x: 0 },
     },
     fadeRight: {
-        hidden: "opacity-0 translate-x-10",
-        visible: "opacity-100 translate-x-0",
+        hidden: { opacity: 0, x: 40 },
+        visible: { opacity: 1, x: 0 },
     },
     fadeIn: {
-        hidden: "opacity-0",
-        visible: "opacity-100",
+        hidden: { opacity: 0 },
+        visible: { opacity: 1 },
     },
     scaleUp: {
-        hidden: "opacity-0 scale-95",
-        visible: "opacity-100 scale-100",
+        hidden: { opacity: 0, scale: 0.9 },
+        visible: { opacity: 1, scale: 1 },
     },
 };
 
@@ -37,17 +37,20 @@ export const AnimatedSection = ({
     delay = 0,
     animation = "fadeUp",
 }: AnimatedSectionProps) => {
-    const { ref, isVisible } = useScrollAnimation({ threshold: 0.1 });
-    const { hidden, visible } = animationClasses[animation];
-
     return (
-        <div
-            ref={ref}
-            className={`transition-all duration-1000 ease-out ${isVisible ? visible : hidden
-                } ${className}`}
-            style={{ transitionDelay: `${delay}ms` }}
+        <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            variants={variants[animation]}
+            transition={{
+                duration: 0.7,
+                delay: delay / 1000,
+                ease: [0.25, 0.46, 0.45, 0.94], // Smooth cubic-bezier
+            }}
+            className={className}
         >
             {children}
-        </div>
+        </motion.div>
     );
 };

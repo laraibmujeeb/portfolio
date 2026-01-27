@@ -70,8 +70,7 @@ export const Projects = () => {
             return (
               <Card
                 key={index}
-                className="glass-card border-0 overflow-hidden group animate-slide-up"
-                style={{ animationDelay: `${index * 0.1}s` }}
+                className="glass-card border-0 overflow-hidden group"
               >
                 {/* Image with overlay */}
                 <div className="relative h-48 overflow-hidden">

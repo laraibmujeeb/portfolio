@@ -92,7 +92,7 @@ export const Experience = () => {
 
                 {/* Content */}
                 <div className={`flex-1 ml-8 md:ml-0 ${index % 2 === 0 ? 'md:pr-12' : 'md:pl-12'}`}>
-                  <Card className="glass-card-strong glow-on-hover border-0 animate-slide-up" style={{ animationDelay: `${index * 0.1}s` }}>
+                  <Card className="glass-card-strong glow-on-hover border-0">
                     <CardContent className="pt-6 pb-6">
                       <div className="flex flex-wrap items-start justify-between gap-2 mb-3">
                         <div>

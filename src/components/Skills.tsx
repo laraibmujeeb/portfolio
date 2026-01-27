@@ -36,8 +36,7 @@ export const Skills = () => {
           {Object.entries(skills).map(([category, categorySkills], index) => (
             <Card
               key={category}
-              className="glass-card glow-on-hover border-0 animate-slide-up overflow-hidden group"
-              style={{ animationDelay: `${index * 0.1}s` }}
+              className="glass-card glow-on-hover border-0 overflow-hidden group"
             >
               {/* Gradient header */}
               <div className={`h-1 bg-gradient-to-r ${skillColors[category] || 'from-violet-500 to-fuchsia-500'}`} />
