@@ -67,6 +67,7 @@ export const Hero = () => {
         {/* Tagline with typewriter effect */}
         <h2 className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed animate-slide-up">
           <span className="font-semibold text-violet-600 dark:text-violet-400">Full Stack Developer</span> crafting scalable web solutions with{" "}
+          <span className="text-emerald-500 dark:text-emerald-400">Node.js</span>,{" "}
           <span className="text-fuchsia-600 dark:text-fuchsia-400">Laravel</span> &{" "}
           <span className="text-orange-500 dark:text-orange-400">React</span>
         </h2>

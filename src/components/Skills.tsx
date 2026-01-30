@@ -3,17 +3,17 @@ import { Card, CardContent } from "@/components/ui/card";
 
 export const Skills = () => {
   const skills = {
-    "Frontend": ["React.js", "Vue.js", "Angular", "Livewire", "Quasar", "Tailwind CSS", "TypeScript"],
-    "Backend": ["PHP", "Laravel", "FilamentPHP", "Node.js", "RESTful APIs", "MySQL", "Redis", "Meilisearch"],
-    "DevOps & Tools": ["Git", "Docker", "AWS", "CI/CD", "Scout", "Database Migrations"],
-    "Integrations": ["Razorpay", "Twilio", "Payment Processing", "Call Masking", "Email Systems"]
+    "Frontend": ["React.js", "Vue.js", "Tailwind CSS", "TypeScript", "Livewire", "Quasar"],
+    "Backend": ["Node.js", "Express.js", "PHP", "Laravel", "REST APIs", "PostgreSQL", "MongoDB", "MySQL", "Redis"],
+    "Scalable Systems": ["Message Queues (BullMQ/RabbitMQ)", "Background Jobs", "Database Design", "Query Optimization", "Webhooks"],
+    "DevOps & Tools": ["Git", "Docker", "AWS", "CI/CD", "Meilisearch", "Payment Gateways"]
   };
 
   const skillColors: Record<string, string> = {
     "Frontend": "from-violet-500 to-purple-600",
-    "Backend": "from-fuchsia-500 to-pink-600",
-    "DevOps & Tools": "from-orange-500 to-red-500",
-    "Integrations": "from-emerald-500 to-teal-600"
+    "Backend": "from-emerald-500 to-teal-600",
+    "Scalable Systems": "from-fuchsia-500 to-pink-600",
+    "DevOps & Tools": "from-orange-500 to-red-500"
   };
 
   return (

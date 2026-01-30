@@ -24,7 +24,7 @@ export const About = () => {
                 I'm a <span className="font-semibold text-violet-600 dark:text-violet-400">Full Stack Developer</span> with over 3+ years of experience building robust, scalable, and user-centric web applications.
               </p>
               <p className="animate-slide-up" style={{ animationDelay: '0.1s' }}>
-                I specialize in <span className="font-semibold text-fuchsia-600 dark:text-fuchsia-400">PHP (Laravel)</span> for backend development and have strong expertise in JavaScript frameworks like <span className="font-semibold text-orange-500 dark:text-orange-400">React.js</span> and <span className="font-semibold text-emerald-500 dark:text-emerald-400">Vue.js</span> for frontend.
+                I specialize in <span className="font-semibold text-emerald-500 dark:text-emerald-400">Node.js (Express.js)</span> and <span className="font-semibold text-fuchsia-600 dark:text-fuchsia-400">PHP (Laravel)</span> for backend development, with strong expertise in building scalable REST APIs, database design, and frontend frameworks like <span className="font-semibold text-orange-500 dark:text-orange-400">React.js</span>.
               </p>
               <p className="animate-slide-up" style={{ animationDelay: '0.2s' }}>
                 Throughout my career, I've worked on diverse projects including high-traffic job portals, on-demand service marketplaces, multi-tenant SaaS applications, and government systems.

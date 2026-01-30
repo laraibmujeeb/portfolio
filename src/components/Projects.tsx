@@ -9,9 +9,9 @@ const projects = [
     image: "/bestkaam-dashboard.png",
     icon: Briefcase,
     gradient: "from-violet-500 to-purple-600",
-    description: "Built and optimized BESTKAAM, a high-traffic job portal using Laravel, FilamentPHP, and Meilisearch.",
-    features: ["Analytical dashboards", "Query optimization", "Real-time search"],
-    technologies: ["Laravel", "FilamentPHP", "Meilisearch", "Redis"]
+    description: "Built and optimized BESTKAAM, a high-traffic job portal with scalable REST APIs, Redis caching, and Meilisearch integration.",
+    features: ["REST APIs", "Redis caching", "Real-time search"],
+    technologies: ["Node.js", "Express.js", "Laravel", "PostgreSQL", "Meilisearch"]
   },
   {
     title: "HelpRush",
@@ -20,9 +20,9 @@ const projects = [
     image: "/helprush-dashboard.png",
     icon: Smartphone,
     gradient: "from-emerald-500 to-teal-600",
-    description: "On-demand service marketplace connecting users with verified providers.",
-    features: ["Twilio call masking", "Razorpay payments", "Provider verification"],
-    technologies: ["Laravel", "Twilio", "Razorpay"]
+    description: "On-demand service marketplace with async message queues, booking workflows, and payment processing.",
+    features: ["Message queues", "Twilio call masking", "Razorpay payments"],
+    technologies: ["Node.js", "Express.js", "MongoDB", "Twilio", "Razorpay"]
   },
   {
     title: "LMC Property Tax",
@@ -31,9 +31,9 @@ const projects = [
     image: "/property-tax-dashboard.png",
     icon: Database,
     gradient: "from-blue-500 to-indigo-600",
-    description: "Government project for Lunglei Municipal Corporation focused on digitizing property data.",
-    features: ["Property profiling", "Tax generation", "Role management"],
-    technologies: ["Laravel", "FilamentPHP", "Vue.js"]
+    description: "Government project for digitizing property data with automated tax generation and background job processing.",
+    features: ["Property profiling", "Tax generation", "Background jobs"],
+    technologies: ["Node.js", "Express.js", "Laravel", "PostgreSQL"]
   },
   {
     title: "School Fee System",
@@ -41,9 +41,9 @@ const projects = [
     image: "/school-fee-dashboard.png",
     icon: FileText,
     gradient: "from-orange-500 to-red-500",
-    description: "Multi-tenant web app to automate fee collection for schools.",
-    features: ["Multi-tenancy", "Automated invoicing", "Fee management"],
-    technologies: ["Laravel", "Vue.js", "Quasar"]
+    description: "Multi-tenant web app with queue-based background jobs for invoice generation, payment reminders, and notifications.",
+    features: ["Multi-tenancy", "Queue-based jobs", "Invoice generation"],
+    technologies: ["Node.js", "Express.js", "React.js", "Laravel"]
   }
 ];
 

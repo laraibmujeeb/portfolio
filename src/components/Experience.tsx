@@ -8,54 +8,56 @@ const experiences = [
     company: "Bestkaam",
     location: "Puducherry",
     period: "Oct 2025 - Jan 2026",
-    description: "Developed the Bestkaam Laravel/Filament job portal with advanced filtering/visualizations, Meilisearch integration for high-performance search.",
+    description: "Designed and developed scalable backend services using Node.js, Express.js, and Laravel. Built REST APIs for job listings, analytics, and high-performance search with Meilisearch.",
     achievements: [
-      "Built scalable reporting with advanced filtering",
-      "Integrated Meilisearch for high-performance search",
-      "Designed responsive email templates",
-      "Optimized database queries significantly"
+      "Built REST APIs with Node.js/Express.js and Laravel",
+      "Integrated Redis caching for traffic spikes",
+      "Optimized PostgreSQL and MySQL queries",
+      "Developed background jobs with message queues"
     ],
-    technologies: ["Laravel", "Filament", "Meilisearch", "Redis", "MySQL"]
+    technologies: ["Node.js", "Express.js", "Laravel", "PostgreSQL", "Redis", "Meilisearch"]
   },
   {
-    title: "Full Stack Developer",
+    title: "Sr. Web Developer",
     company: "Helprush",
     location: "Srinagar",
     period: "May 2025 - Oct 2025",
-    description: "Built an on-demand service marketplace connecting users with verified providers.",
+    description: "Developed backend APIs for an on-demand service marketplace. Implemented booking workflows, provider onboarding, and integrated message queues for async processing.",
     achievements: [
-      "Developed service management modules",
+      "Built Node.js/Express.js backend services",
       "Integrated Twilio for call masking",
-      "Built Razorpay payment processing",
-      "Provider skill verification system"
+      "Implemented Razorpay payment processing",
+      "Designed MongoDB and PostgreSQL schemas"
     ],
-    technologies: ["Laravel", "Twilio", "Razorpay", "APIs"]
+    technologies: ["Node.js", "Express.js", "MongoDB", "PostgreSQL", "Twilio", "Razorpay"]
   },
   {
     title: "Full Stack Developer",
     company: "Lailen",
     location: "Aizawl",
     period: "Nov 2024 - Apr 2025",
-    description: "Built full-stack web applications using React, Vue.js, and Laravel.",
+    description: "Built REST APIs using Node.js/Express.js and Laravel. Implemented authentication, authorization, and queue-based background processing for email notifications.",
     achievements: [
-      "Built clean, responsive UIs",
-      "Integrated APIs and backend logic",
-      "Created admin panels with Filament"
+      "Developed clean, responsive UIs with React.js",
+      "Built authentication/authorization systems",
+      "Implemented queue-based background jobs",
+      "Created admin panels with Laravel Filament"
     ],
-    technologies: ["React", "Vue.js", "Laravel", "Filament"]
+    technologies: ["Node.js", "Express.js", "React.js", "Laravel", "Tailwind CSS"]
   },
   {
-    title: "Full Stack Developer",
+    title: "Web Developer",
     company: "Bracketworks",
     location: "Dubai",
     period: "Nov 2022 - Oct 2024",
-    description: "Designed intuitive user interfaces with modern frontend technologies.",
+    description: "Developed scalable backend services and REST APIs. Designed PostgreSQL schemas and implemented async job processing using message queues for high-volume tasks.",
     achievements: [
-      "Delivered responsive web applications",
-      "Implemented APIs and database operations",
-      "Handled backend integrations"
+      "Built REST APIs with Node.js and Laravel",
+      "Designed PostgreSQL database schemas",
+      "Implemented async message queue processing",
+      "Worked with React frontend teams"
     ],
-    technologies: ["React", "Laravel", "APIs"]
+    technologies: ["Node.js", "Express.js", "Laravel", "PostgreSQL", "React"]
   }
 ];
 
