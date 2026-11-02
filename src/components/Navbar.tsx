@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Download } from "lucide-react";
 
 const navLinks = [
@@ -78,13 +79,20 @@ export const Navbar = () => {
                   e.preventDefault();
                   handleNavClick(link.href);
                 }}
-                className={`px-3.5 py-1.5 rounded-full text-sm transition-all duration-300 ${
+                className={`relative px-3.5 py-1.5 rounded-full text-sm transition-colors duration-200 ${
                   activeHash === link.href
-                    ? "text-white bg-white/[0.08] font-medium"
-                    : "text-white/50 hover:text-white/80 hover:bg-white/[0.04]"
+                    ? "text-white font-medium"
+                    : "text-white/50 hover:text-white/80"
                 }`}
               >
-                {link.name}
+                {activeHash === link.href && (
+                  <motion.span
+                    layoutId="nav-pill"
+                    className="absolute inset-0 rounded-full bg-white/[0.08]"
+                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                  />
+                )}
+                <span className="relative z-10">{link.name}</span>
               </a>
             ))}
           </div>
@@ -115,38 +123,49 @@ export const Navbar = () => {
       </div>
 
       {/* Mobile Menu */}
-      {isOpen && (
-        <div className="fixed inset-x-4 top-20 md:hidden rounded-2xl bg-[#0c0c18]/95 backdrop-blur-2xl border border-white/[0.06] p-4 animate-scale-in shadow-[0_20px_60px_rgba(0,0,0,0.5)]">
-          <div className="flex flex-col gap-1">
-            {navLinks.map((link, i) => (
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            key="mobile-menu"
+            initial={{ opacity: 0, scale: 0.95, y: -8 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.95, y: -8 }}
+            transition={{ duration: 0.2, ease: [0.25, 0.46, 0.45, 0.94] }}
+            className="fixed inset-x-4 top-20 md:hidden rounded-2xl bg-[#0c0c18]/95 backdrop-blur-2xl border border-white/[0.06] p-4 shadow-[0_20px_60px_rgba(0,0,0,0.5)]"
+          >
+            <div className="flex flex-col gap-1">
+              {navLinks.map((link, i) => (
+                <motion.a
+                  key={link.name}
+                  href={link.href}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNavClick(link.href);
+                  }}
+                  initial={{ opacity: 0, x: -10 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: i * 0.04, duration: 0.2 }}
+                  className={`px-4 py-3 rounded-xl text-sm transition-all ${
+                    activeHash === link.href
+                      ? "text-white bg-white/[0.06] font-medium"
+                      : "text-white/50 hover:text-white hover:bg-white/[0.04]"
+                  }`}
+                >
+                  {link.name}
+                </motion.a>
+              ))}
               <a
-                key={link.name}
-                href={link.href}
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleNavClick(link.href);
-                }}
-                className={`px-4 py-3 rounded-xl text-sm transition-all animate-slide-up ${
-                  activeHash === link.href
-                    ? "text-white bg-white/[0.06] font-medium"
-                    : "text-white/50 hover:text-white hover:bg-white/[0.04]"
-                }`}
-                style={{ animationDelay: `${i * 0.05}s` }}
+                href="/LARAIB_RESUME(2026).pdf"
+                download
+                className="mt-2 flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-medium bg-gradient-to-r from-violet-600 to-violet-500 text-white"
               >
-                {link.name}
+                <Download className="h-4 w-4" />
+                Resume
               </a>
-            ))}
-            <a
-              href="/LARAIB_RESUME(2026).pdf"
-              download
-              className="mt-2 flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-medium bg-gradient-to-r from-violet-600 to-violet-500 text-white"
-            >
-              <Download className="h-4 w-4" />
-              Resume
-            </a>
-          </div>
-        </div>
-      )}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </nav>
   );
 };
