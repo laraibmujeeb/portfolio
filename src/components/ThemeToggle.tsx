@@ -29,13 +29,13 @@ export const ThemeToggle = () => {
     return (
         <button
             onClick={toggleTheme}
-            className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+            className="p-2 rounded-md border border-gray-200 dark:border-gray-800 text-gray-500 dark:text-gray-400 hover:text-[hsl(168,100%,45%)] hover:border-[hsl(168,100%,45%)] transition-all"
             aria-label="Toggle dark mode"
         >
             {isDark ? (
-                <Sun className="h-5 w-5 text-yellow-500" />
+                <Sun className="h-4 w-4" />
             ) : (
-                <Moon className="h-5 w-5 text-gray-600" />
+                <Moon className="h-4 w-4" />
             )}
         </button>
     );

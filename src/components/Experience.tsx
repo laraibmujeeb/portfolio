@@ -1,6 +1,5 @@
-
-import { Card, CardContent } from "@/components/ui/card";
-import { Briefcase, Calendar, MapPin } from "lucide-react";
+import { Calendar, MapPin } from "lucide-react";
+import { motion } from "framer-motion";
 
 const experiences = [
   {
@@ -8,7 +7,7 @@ const experiences = [
     company: "Bestkaam",
     location: "Puducherry",
     period: "Oct 2025 - Jan 2026",
-    description: "Designed and developed scalable backend services using Node.js, Express.js, and Laravel. Built REST APIs for job listings, analytics, and high-performance search with Meilisearch.",
+    description: "Designed and developed scalable backend services using Node.js, Express.js, and Laravel. Built REST APIs for job listings, analytics, and high-performance search.",
     achievements: [
       "Built REST APIs with Node.js/Express.js and Laravel",
       "Integrated Redis caching for traffic spikes",
@@ -22,7 +21,7 @@ const experiences = [
     company: "Helprush",
     location: "Srinagar",
     period: "May 2025 - Oct 2025",
-    description: "Developed backend APIs for an on-demand service marketplace. Implemented booking workflows, provider onboarding, and integrated message queues for async processing.",
+    description: "Developed backend APIs for an on-demand service marketplace. Implemented booking workflows, provider onboarding, and message queues.",
     achievements: [
       "Built Node.js/Express.js backend services",
       "Integrated Twilio for call masking",
@@ -36,7 +35,7 @@ const experiences = [
     company: "Lailen",
     location: "Aizawl",
     period: "Nov 2024 - Apr 2025",
-    description: "Built REST APIs using Node.js/Express.js and Laravel. Implemented authentication, authorization, and queue-based background processing for email notifications.",
+    description: "Built REST APIs using Node.js/Express.js and Laravel. Implemented authentication, authorization, and queue-based background processing.",
     achievements: [
       "Developed clean, responsive UIs with React.js",
       "Built authentication/authorization systems",
@@ -50,7 +49,7 @@ const experiences = [
     company: "Bracketworks",
     location: "Dubai",
     period: "Nov 2022 - Oct 2024",
-    description: "Developed scalable backend services and REST APIs. Designed PostgreSQL schemas and implemented async job processing using message queues for high-volume tasks.",
+    description: "Developed scalable backend services and REST APIs. Designed PostgreSQL schemas and implemented async job processing.",
     achievements: [
       "Built REST APIs with Node.js and Laravel",
       "Designed PostgreSQL database schemas",
@@ -63,84 +62,72 @@ const experiences = [
 
 export const Experience = () => {
   return (
-    <section id="experience" className="py-24 px-4 relative overflow-hidden">
-      {/* Background - More vibrant in light mode */}
-      <div className="absolute inset-0 bg-gradient-to-br from-gray-100 via-white to-gray-200 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900" />
+    <section id="experience" className="py-28 px-6 relative overflow-hidden">
+      <div className="aurora-blob aurora-blob-2 top-[20%] right-[-10%]" />
 
       <div className="max-w-4xl mx-auto relative z-10">
-        <div className="text-center mb-12">
-          <span className="inline-block px-4 py-1.5 rounded-full text-sm font-medium bg-orange-100 dark:bg-orange-900/50 text-orange-700 dark:text-orange-300 mb-4">
-            Career Journey
-          </span>
-          <h2 className="text-4xl md:text-5xl font-bold gradient-text">
-            Experience
-          </h2>
+        {/* Header */}
+        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/[0.04] border border-white/[0.08] mb-6">
+          <span className="text-sm text-white/50 font-mono">03 —</span>
+          <span className="text-sm text-white/70 font-medium">Career</span>
         </div>
+        <h2 className="text-4xl md:text-5xl font-bold text-white tracking-tight mb-16">
+          Work <span className="gradient-text">Experience</span>
+        </h2>
 
         {/* Timeline */}
-        <div className="relative">
-          {/* Timeline line */}
-          <div className="absolute left-0 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-violet-500 via-fuchsia-500 to-orange-500 transform md:-translate-x-px" />
+        <div className="relative pl-10">
+          {/* Timeline gradient line */}
+          <div className="timeline-line" />
 
-          <div className="space-y-8">
+          <div className="space-y-12">
             {experiences.map((exp, index) => (
-              <div
+              <motion.div
                 key={index}
-                className={`relative flex flex-col md:flex-row gap-8 ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
-                  }`}
+                initial={{ opacity: 0, x: 30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="relative"
               >
                 {/* Timeline dot */}
-                <div className="absolute left-0 md:left-1/2 w-4 h-4 rounded-full bg-gradient-to-r from-violet-500 to-fuchsia-500 transform -translate-x-1.5 md:-translate-x-2 mt-6 animate-pulse-glow" />
+                <div className="timeline-dot" style={{ top: '1.5rem' }} />
 
-                {/* Content */}
-                <div className={`flex-1 ml-8 md:ml-0 ${index % 2 === 0 ? 'md:pr-12' : 'md:pl-12'}`}>
-                  <Card className="glass-card-strong glow-on-hover border-0">
-                    <CardContent className="pt-6 pb-6">
-                      <div className="flex flex-wrap items-start justify-between gap-2 mb-3">
-                        <div>
-                          <h3 className="text-lg font-bold text-gray-900 dark:text-white">{exp.title}</h3>
-                          <p className="text-violet-600 dark:text-violet-400 font-semibold">{exp.company}</p>
-                        </div>
-                        <div className="flex flex-col items-end text-sm text-gray-500 dark:text-gray-400">
-                          <span className="flex items-center gap-1">
-                            <Calendar className="h-3.5 w-3.5" />
-                            {exp.period}
-                          </span>
-                          <span className="flex items-center gap-1">
-                            <MapPin className="h-3.5 w-3.5" />
-                            {exp.location}
-                          </span>
-                        </div>
-                      </div>
+                {/* Card */}
+                <div className="glass-card p-6">
+                  <div className="flex flex-wrap items-start justify-between gap-3 mb-3">
+                    <div>
+                      <h3 className="text-lg font-semibold text-white">{exp.title}</h3>
+                      <p className="text-violet-400 font-medium">@ {exp.company}</p>
+                    </div>
+                    <div className="flex flex-col items-end text-xs text-white/30 font-mono gap-1">
+                      <span className="flex items-center gap-1">
+                        <Calendar className="h-3 w-3" /> {exp.period}
+                      </span>
+                      <span className="flex items-center gap-1">
+                        <MapPin className="h-3 w-3" /> {exp.location}
+                      </span>
+                    </div>
+                  </div>
 
-                      <p className="text-gray-600 dark:text-gray-300 text-sm mb-4">{exp.description}</p>
+                  <p className="text-white/40 text-sm mb-4 leading-relaxed">{exp.description}</p>
 
-                      <ul className="space-y-1 text-sm text-gray-600 dark:text-gray-400 mb-4">
-                        {exp.achievements.map((achievement, i) => (
-                          <li key={i} className="flex items-start gap-2">
-                            <span className="text-fuchsia-500 mt-1">•</span>
-                            {achievement}
-                          </li>
-                        ))}
-                      </ul>
+                  <ul className="space-y-1.5 text-sm text-white/35 mb-4">
+                    {exp.achievements.map((achievement, i) => (
+                      <li key={i} className="flex items-start gap-2">
+                        <span className="text-violet-400 mt-1">▸</span>
+                        <span>{achievement}</span>
+                      </li>
+                    ))}
+                  </ul>
 
-                      <div className="flex flex-wrap gap-1.5">
-                        {exp.technologies.map((tech) => (
-                          <span
-                            key={tech}
-                            className="px-2 py-0.5 text-xs rounded-full bg-violet-100 dark:bg-violet-900/50 text-violet-700 dark:text-violet-300"
-                          >
-                            {tech}
-                          </span>
-                        ))}
-                      </div>
-                    </CardContent>
-                  </Card>
+                  <div className="flex flex-wrap gap-1.5">
+                    {exp.technologies.map((tech) => (
+                      <span key={tech} className="tag-glass">{tech}</span>
+                    ))}
+                  </div>
                 </div>
-
-                {/* Spacer for alternating layout */}
-                <div className="hidden md:block flex-1" />
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>

@@ -1,14 +1,9 @@
 import { useState } from "react";
-import { Card, CardContent } from "@/components/ui/card";
 import { Github, Linkedin, Mail, Phone, Send, Loader2, CheckCircle, Sparkles } from "lucide-react";
+import { motion } from "framer-motion";
 
 export const Contact = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    subject: "",
-    message: "",
-  });
+  const [formData, setFormData] = useState({ name: "", email: "", subject: "", message: "" });
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -18,23 +13,17 @@ export const Contact = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus("loading");
-
     try {
       const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           access_key: "7980ba2c-7aa9-4440-bdcb-d65c6ebf2614",
-          name: formData.name,
-          email: formData.email,
-          subject: formData.subject,
-          message: formData.message,
+          ...formData,
           from_name: "Portfolio Contact Form",
         }),
       });
-
       const data = await response.json();
-
       if (data.success) {
         setStatus("success");
         setFormData({ name: "", email: "", subject: "", message: "" });
@@ -50,141 +39,117 @@ export const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-24 px-4 relative overflow-hidden">
-      {/* Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-violet-200/50 via-fuchsia-100/50 to-orange-100/50 dark:from-violet-900/20 dark:via-fuchsia-900/20 dark:to-orange-900/20" />
-      <div className="absolute inset-0 particles-bg opacity-30" />
+    <section id="contact" className="py-28 px-6 relative overflow-hidden aurora-bg">
+      <div className="aurora-blob aurora-blob-1 top-[10%] right-[10%]" />
 
-      {/* Floating blobs - More visible in light mode */}
-      <div className="absolute bottom-0 left-0 w-72 h-72 bg-violet-400/30 dark:bg-violet-500/20 rounded-full blur-3xl morph-blob" />
-      <div className="absolute top-0 right-0 w-96 h-96 bg-fuchsia-400/30 dark:bg-fuchsia-500/20 rounded-full blur-3xl morph-blob" style={{ animationDelay: '-4s' }} />
+      <div className="max-w-6xl mx-auto relative z-10">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+          {/* Left - CTA */}
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/[0.04] border border-white/[0.08] mb-6">
+              <Sparkles className="h-3.5 w-3.5 text-violet-400" />
+              <span className="text-sm text-white/70 font-medium">Let's Connect</span>
+            </div>
 
-      <div className="max-w-4xl mx-auto relative z-10">
-        <div className="text-center mb-12">
-          <span className="inline-block px-4 py-1.5 rounded-full text-sm font-medium bg-pink-100 dark:bg-pink-900/50 text-pink-700 dark:text-pink-300 mb-4">
-            <Sparkles className="inline h-4 w-4 mr-1" />
-            Let's Connect
-          </span>
-          <h2 className="text-4xl md:text-5xl font-bold gradient-text">
-            Get in Touch
-          </h2>
-        </div>
+            <h2 className="text-4xl md:text-6xl font-bold tracking-tight mb-6 leading-[1.05]">
+              <span className="text-white">Let's build</span>
+              <br />
+              <span className="gradient-text-shimmer">something amazing</span>
+              <br />
+              <span className="text-white">together.</span>
+            </h2>
 
-        <div className="grid md:grid-cols-2 gap-8">
-          {/* Contact Form */}
-          <Card className="glass-card-strong glow-on-hover border-0 animate-slide-up">
-            <CardContent className="pt-6 pb-6">
-              <h3 className="text-lg font-bold mb-4 gradient-text">Send a Message</h3>
-              <form onSubmit={handleSubmit} className="space-y-4">
+            <p className="text-white/35 text-lg leading-relaxed mb-10 max-w-md">
+              I'm always open to discussing new projects, creative ideas,
+              or opportunities to be part of your vision.
+            </p>
+
+            {/* Contact info */}
+            <div className="space-y-4 mb-8">
+              <a href="mailto:mujeeblaraib@gmail.com"
+                className="flex items-center gap-4 group">
+                <div className="p-2.5 rounded-xl bg-white/[0.04] border border-white/[0.08] group-hover:border-violet-500/30 group-hover:shadow-[0_0_20px_rgba(124,58,237,0.1)] transition-all">
+                  <Mail className="h-4 w-4 text-white/40 group-hover:text-violet-400 transition-colors" />
+                </div>
+                <span className="text-white/50 group-hover:text-white/80 transition-colors">mujeeblaraib@gmail.com</span>
+              </a>
+              <a href="tel:+918299371557"
+                className="flex items-center gap-4 group">
+                <div className="p-2.5 rounded-xl bg-white/[0.04] border border-white/[0.08] group-hover:border-cyan-500/30 group-hover:shadow-[0_0_20px_rgba(6,182,212,0.1)] transition-all">
+                  <Phone className="h-4 w-4 text-white/40 group-hover:text-cyan-400 transition-colors" />
+                </div>
+                <span className="text-white/50 group-hover:text-white/80 transition-colors">+91 8299371557</span>
+              </a>
+            </div>
+
+            {/* Social links */}
+            <div className="flex items-center gap-3">
+              <a href="https://github.com/laraibmujeeb" target="_blank" rel="noopener noreferrer"
+                className="p-2.5 rounded-full bg-white/[0.04] border border-white/[0.08] text-white/40 hover:text-white hover:border-violet-500/30 hover:shadow-[0_0_20px_rgba(124,58,237,0.15)] transition-all">
+                <Github className="h-5 w-5" />
+              </a>
+              <a href="https://www.linkedin.com/in/laraib-mujeeb-6b977b1b1/" target="_blank" rel="noopener noreferrer"
+                className="p-2.5 rounded-full bg-white/[0.04] border border-white/[0.08] text-white/40 hover:text-white hover:border-cyan-500/30 hover:shadow-[0_0_20px_rgba(6,182,212,0.15)] transition-all">
+                <Linkedin className="h-5 w-5" />
+              </a>
+            </div>
+          </motion.div>
+
+          {/* Right - Form */}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+          >
+            <div className="gradient-border-slow p-6 md:p-8">
+              <h3 className="text-lg font-semibold text-white mb-6">Send a Message</h3>
+              <form onSubmit={handleSubmit} className="space-y-5">
+                <div className="grid grid-cols-2 gap-4">
+                  <input
+                    type="text" name="name" placeholder="Name"
+                    value={formData.name} onChange={handleChange} required
+                    className="input-glass"
+                  />
+                  <input
+                    type="email" name="email" placeholder="Email"
+                    value={formData.email} onChange={handleChange} required
+                    className="input-glass"
+                  />
+                </div>
                 <input
-                  type="text"
-                  name="name"
-                  placeholder="Your Name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  required
-                  className="w-full px-4 py-3 rounded-xl border-0 glass-input text-gray-900 dark:text-white placeholder-gray-500 focus:ring-2 focus:ring-violet-500 transition-all"
-                />
-                <input
-                  type="email"
-                  name="email"
-                  placeholder="Your Email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                  className="w-full px-4 py-3 rounded-xl border-0 glass-input text-gray-900 dark:text-white placeholder-gray-500 focus:ring-2 focus:ring-violet-500 transition-all"
-                />
-                <input
-                  type="text"
-                  name="subject"
-                  placeholder="Subject"
-                  value={formData.subject}
-                  onChange={handleChange}
-                  required
-                  className="w-full px-4 py-3 rounded-xl border-0 glass-input text-gray-900 dark:text-white placeholder-gray-500 focus:ring-2 focus:ring-violet-500 transition-all"
+                  type="text" name="subject" placeholder="Subject"
+                  value={formData.subject} onChange={handleChange} required
+                  className="input-glass"
                 />
                 <textarea
-                  name="message"
-                  placeholder="Your Message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  required
-                  rows={4}
-                  className="w-full px-4 py-3 rounded-xl border-0 glass-input text-gray-900 dark:text-white placeholder-gray-500 focus:ring-2 focus:ring-violet-500 transition-all resize-none"
+                  name="message" placeholder="Your message..."
+                  value={formData.message} onChange={handleChange} required
+                  rows={5} className="input-glass resize-none"
                 />
                 <button
-                  type="submit"
-                  disabled={status === "loading"}
-                  className="w-full h-12 rounded-xl font-semibold primary-gradient text-white glow-on-hover disabled:opacity-70 flex items-center justify-center gap-2"
+                  type="submit" disabled={status === "loading"}
+                  className="w-full btn-aurora disabled:opacity-50 cursor-pointer"
                 >
                   {status === "loading" ? (
-                    <><Loader2 className="h-5 w-5 animate-spin" /> Sending...</>
+                    <><Loader2 className="h-4 w-4 animate-spin" /> Sending...</>
                   ) : status === "success" ? (
-                    <><CheckCircle className="h-5 w-5" /> Sent!</>
+                    <><CheckCircle className="h-4 w-4" /> Message Sent!</>
                   ) : (
-                    <><Send className="h-5 w-5" /> Send Message</>
+                    <><Send className="h-4 w-4" /> Send Message</>
                   )}
                 </button>
+                {status === "error" && (
+                  <p className="text-sm text-red-400 text-center">Something went wrong. Please try again.</p>
+                )}
               </form>
-            </CardContent>
-          </Card>
-
-          {/* Contact Info */}
-          <Card className="glass-card-strong glow-on-hover border-0 animate-slide-up" style={{ animationDelay: '0.1s' }}>
-            <CardContent className="pt-6 pb-6 h-full flex flex-col">
-              <h3 className="text-lg font-bold mb-4 gradient-text">Contact Info</h3>
-              <p className="text-gray-600 dark:text-gray-300 mb-6">
-                Feel free to reach out for collaborations, opportunities, or just a friendly chat!
-              </p>
-
-              <div className="space-y-4 flex-1">
-                <a
-                  href="mailto:mujeeblaraib@gmail.com"
-                  className="flex items-center gap-4 p-3 rounded-xl glass-input hover:bg-violet-50 dark:hover:bg-violet-900/30 transition-colors group"
-                >
-                  <div className="p-2 rounded-lg bg-gradient-to-r from-violet-500 to-fuchsia-500">
-                    <Mail className="h-5 w-5 text-white" />
-                  </div>
-                  <span className="text-gray-700 dark:text-gray-300 group-hover:text-violet-600 dark:group-hover:text-violet-400 transition-colors">
-                    mujeeblaraib@gmail.com
-                  </span>
-                </a>
-                <a
-                  href="tel:+918299371557"
-                  className="flex items-center gap-4 p-3 rounded-xl glass-input hover:bg-fuchsia-50 dark:hover:bg-fuchsia-900/30 transition-colors group"
-                >
-                  <div className="p-2 rounded-lg bg-gradient-to-r from-fuchsia-500 to-pink-500">
-                    <Phone className="h-5 w-5 text-white" />
-                  </div>
-                  <span className="text-gray-700 dark:text-gray-300 group-hover:text-fuchsia-600 dark:group-hover:text-fuchsia-400 transition-colors">
-                    +91 8299371557
-                  </span>
-                </a>
-              </div>
-
-              <div className="pt-6 border-t border-gray-200 dark:border-gray-700 mt-6">
-                <p className="text-sm text-gray-500 dark:text-gray-400 mb-3">Find me on</p>
-                <div className="flex gap-3">
-                  <a
-                    href="https://github.com/laraibmujeeb"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-3 rounded-xl glass-card-strong glow-on-hover group"
-                  >
-                    <Github className="h-5 w-5 text-gray-600 dark:text-gray-400 group-hover:text-violet-500 transition-colors" />
-                  </a>
-                  <a
-                    href="https://www.linkedin.com/in/laraib-mujeeb-6b977b1b1/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-3 rounded-xl glass-card-strong glow-on-hover group"
-                  >
-                    <Linkedin className="h-5 w-5 text-gray-600 dark:text-gray-400 group-hover:text-fuchsia-500 transition-colors" />
-                  </a>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
+            </div>
+          </motion.div>
         </div>
       </div>
     </section>
